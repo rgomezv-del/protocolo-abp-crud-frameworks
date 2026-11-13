@@ -1,0 +1,24 @@
+<div class="contenedor">
+  <h1>CRUD de Tareas - Angular</h1>
+
+  <div class="formulario">
+    <h2>{{ editandoId ? 'Editar Tarea' : 'Nueva Tarea' }}</h2>
+    <input [(ngModel)]="nuevaTarea.titulo" placeholder="Título de la tarea" />
+    <input [(ngModel)]="nuevaTarea.descripcion" placeholder="Descripción" />
+    
+    <button *ngIf="editandoId" (click)="guardarEdicion()" class="btn-guardar">Guardar Cambios</button>
+    <button *ngIf="!editandoId" (click)="crearTarea()" class="btn-crear">Crear Tarea</button>
+  </div>
+
+  <ul class="lista">
+    <li *ngFor="let tarea of tareas">
+      <div>
+        <strong>{{ tarea.titulo }}</strong> - {{ tarea.descripcion }}
+      </div>
+      <div>
+        <button (click)="prepararEdicion(tarea)" class="btn-editar">Editar</button>
+        <button (click)="eliminarTarea(tarea.id)" class="btn-eliminar">Eliminar</button>
+      </div>
+    </li>
+  </ul>
+</div>
